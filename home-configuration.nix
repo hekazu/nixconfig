@@ -34,6 +34,12 @@
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+        sudo = {
+          disabled = false;
+          symbol = "👮 ";
+        };
+      };
     };
 
     programs.git = {
