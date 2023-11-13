@@ -16,6 +16,7 @@
       gco = "git commit";
       gp = "git push";
       gib = "git pull";
+      gcb = "git checkout -b";
     };
 
     programs.zsh = {
@@ -49,6 +50,11 @@
       ignores = [
         ".direnv/"
       ];
+      extraConfig = {
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+        branch.autoSetupRebase = "remote";
+      };
     };
 
     programs.home-manager.enable = true;
