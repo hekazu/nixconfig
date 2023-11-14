@@ -57,6 +57,20 @@
       };
     };
 
+    programs.vim = {
+      enable = true;
+      plugins = with pkgs; with vimPlugins; [
+        robotframework-vim
+      ];
+      settings = {
+        undodir = ["~" ".vim" "undodir"];
+        expandtab = true;
+      };
+      extraConfig = ''
+        set nocompatible
+      '';
+    };
+
     programs.home-manager.enable = true;
     home.stateVersion = "23.05";
   };
