@@ -68,6 +68,9 @@
       };
       extraConfig = ''
         set nocompatible
+        set backspace=indent,eol,start
+        set ruler
+        set autoindent
       '';
     };
 
