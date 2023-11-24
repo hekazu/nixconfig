@@ -10,6 +10,10 @@
       arandr
     ];
 
+    home.sessionVariables = {
+        EDITOR = "vim";
+    };
+
     home.shellAliases = {
       ga = "git add";
       gs = "git status";
