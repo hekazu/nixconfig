@@ -8,6 +8,7 @@
       tree
       nerdfonts
       arandr
+      autorandr
     ];
 
     home.sessionVariables = {
