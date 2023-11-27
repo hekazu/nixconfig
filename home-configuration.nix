@@ -9,6 +9,7 @@
       nerdfonts
       arandr
       autorandr
+      thunderbird
     ];
 
     home.sessionVariables = {

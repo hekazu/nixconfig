@@ -31,6 +31,7 @@ myconfig = def
     [ ("M-f", spawn "firefox")
     , ("M4-l", spawn "xscreensaver-command -lock")
     , ("M-q", restart "xmonad" True )
+    , ("M-e", spawn "thunderbird")
     ]
 
 myXmobarPP :: PP
