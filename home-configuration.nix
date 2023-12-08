@@ -55,6 +55,7 @@
       userEmail = "henri.peurasaari@helsinki.fi";
       ignores = [
         ".direnv/"
+        "dist-newstyle/"
       ];
       extraConfig = {
         init.defaultBranch = "main";
@@ -67,6 +68,7 @@
       enable = true;
       plugins = with pkgs; with vimPlugins; [
         robotframework-vim
+        LanguageClient-neovim
       ];
       settings = {
         undodir = ["~" ".vim" "undodir"];
@@ -77,6 +79,24 @@
         set backspace=indent,eol,start
         set ruler
         set autoindent
+
+        " Return to last edit position when opening files (You want this!)
+        autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+
+        " Add LanguageClient-neovim bindings
+        let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
+
+        nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+        map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+        map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+        map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+        map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+        map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+        map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+        map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
       '';
     };
 
