@@ -69,6 +69,7 @@
       plugins = with pkgs; with vimPlugins; [
         robotframework-vim
         LanguageClient-neovim
+        editorconfig-vim
       ];
       settings = {
         undodir = ["~" ".vim" "undodir"];
