@@ -32,6 +32,7 @@ myconfig = def
     , ("M4-l", spawn "xscreensaver-command -lock")
     , ("M-q", restart "xmonad" True )
     , ("M-e", spawn "thunderbird")
+    , ("<Print>", spawn "flameshot gui")
     ]
 
 myXmobarPP :: PP
@@ -46,3 +47,4 @@ myStartupHook = do
   spawnOnce "xscreensaver -no-splash"
   spawnOnce "xfce4-power-manager"
   spawnOnce "nm-applet --sm-disable"
+  spawnOnce "flameshot"
