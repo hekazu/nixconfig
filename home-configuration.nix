@@ -102,7 +102,12 @@
       '';
     };
 
-    services.flameshot.enable = true;
+    services.flameshot = {
+      enable = true;
+      settings = {
+        General = { showStartupLaunchMessage = false; };
+      };
+    };
 
     programs.home-manager.enable = true;
     home.stateVersion = "23.05";
