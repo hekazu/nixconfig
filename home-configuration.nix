@@ -61,6 +61,7 @@
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
         branch.autoSetupRebase = "remote";
+        user.signingkey = "6E5D47F6C411A1C8";
       };
     };
 
