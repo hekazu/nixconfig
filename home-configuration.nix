@@ -56,6 +56,7 @@
       ignores = [
         ".direnv/"
         "dist-newstyle/"
+        ".envrc"
       ];
       extraConfig = {
         init.defaultBranch = "main";
