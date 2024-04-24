@@ -57,6 +57,7 @@
         ".direnv/"
         "dist-newstyle/"
         ".envrc"
+        "result"
       ];
       extraConfig = {
         init.defaultBranch = "main";
