@@ -130,7 +130,6 @@
     feh
     xfce.xfce4-power-manager
     alacritty
-    fwupd
     pavucontrol
   ];
 
@@ -143,6 +142,9 @@
   };
 
   # List services that you want to enable:
+
+  # Enable fwupd to update firmware
+  services.fwupd.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
