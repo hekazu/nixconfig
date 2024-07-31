@@ -52,7 +52,7 @@
   services.xserver.enable = true;
 
   # Enable the Xmonad Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
