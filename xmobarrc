@@ -20,7 +20,7 @@ Config { overrideRedirect = False
                     , Run Memory ["--template", "Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
-                    , Run Battery ["-t", "Batt: <left>% <acstatus>"
+                    , Run Battery [ "-t", "Batt: <left>% <acstatus>"
                                   , "--", "-O", "⚡", "-i", "🔋", "-o", ""
                                   ] 100
                     , Run XMonadLog
