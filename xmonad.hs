@@ -44,6 +44,6 @@ myStartupHook = do
             \--transparent true --tint 0x5f5f5f --height 18"
   spawnOnce "feh --bg-fill --no-fehbg ~/wallpapers/nix.png"
   spawnOnce "xscreensaver -no-splash"
-  spawnOnce "xfce4-power-manager"
+  spawnOnce "cbatticon -n -x \"shutdown -h now\""
   spawnOnce "nm-applet --sm-disable"
   spawnOnce "flameshot"

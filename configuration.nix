@@ -128,7 +128,7 @@
     trayer
     networkmanagerapplet
     feh
-    xfce.xfce4-power-manager
+    cbatticon
     alacritty
     pavucontrol
   ];
