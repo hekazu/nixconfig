@@ -55,6 +55,7 @@ myStartupHook = do
 myManageHook :: ManageHook
 myManageHook = composeAll
   [ isDialog --> doFloat
-  , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doFloat
---  , isNotification --> doFloat | above is equivalent, would want to do this one though...
+  , isInProperty "_NET_WM_WINDOW_TYPE"
+                 "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doFloat
+--  , isNotification --> doFloat | replaces above in xmonad-contrib-0.18.1
   ]
