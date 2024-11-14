@@ -11,6 +11,9 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
+-- managehook utils
+import XMonad.Hooks.ManageHelpers
+
 -- startuphook utils
 import XMonad.Util.SpawnOnce (spawnOnce)
 
@@ -24,6 +27,7 @@ main = xmonad
 myconfig = def
     {  terminal = "alacritty"
     ,  startupHook = myStartupHook
+    ,  manageHook = myManageHook
     ,  focusedBorderColor = "#32CD32"
     }
   `additionalKeysP`
@@ -47,3 +51,10 @@ myStartupHook = do
   spawnOnce "cbatticon -n -x \"shutdown -h now\""
   spawnOnce "nm-applet --sm-disable"
   spawnOnce "flameshot"
+
+myManageHook :: ManageHook
+myManageHook = composeAll
+  [ isDialog --> doFloat
+  , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doFloat
+--  , isNotification --> doFloat | above is equivalent, would want to do this one though...
+  ]
