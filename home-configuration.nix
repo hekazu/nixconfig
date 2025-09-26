@@ -6,7 +6,6 @@
   home-manager.users.fargate = {
     home.packages = with pkgs; [
       tree
-      nerdfonts
       arandr
       autorandr
       thunderbird
@@ -34,7 +33,13 @@
     programs.alacritty = {
       enable = true;
       settings = {
-        font = { size = 8.0; };
+        font = {
+          size = 10.0;
+          normal = {
+            family = "Terminess Nerd Font";
+            style = "Regular";
+          };
+        };
       };
     };
 
@@ -109,6 +114,11 @@
       settings = {
         General = { showStartupLaunchMessage = false; };
       };
+    };
+
+    services.nextcloud-client = {
+      enable = true;
+      startInBackground = true;
     };
 
     programs.home-manager.enable = true;

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -20,18 +20,22 @@
   # Use LUKS
   boot.initrd.luks.devices = {
     luksroot = {
-      device = "/dev/disk/by-uuid/648faa95-3843-4f7d-b6d9-feffa7f2b1a2";
+      device = "/dev/disk/by-uuid/b3df4f4c-e6e2-402b-a788-0a1eee5fbc2b";
     };
   };
 
   # Ensure filesystems are using the correct options
   fileSystems = {
     "/".options = [ "compress=zstd" ];
-    "/home".options = [ "compress=zstd" ];
-    "/nix".options = [ "compress=zstd" "noatime" ];
+    "/home".options = [ "subvol=home" "compress=zstd" ];
+    "/nix".options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    "/var/log" = {
+      options = [ "subvol=log" "compress=zstd" "noatime" ];
+      neededForBoot = true;
+    };
   };
 
-  networking.hostName = "thunkpad"; # Define your hostname.
+  networking.hostName = "monosodium"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -104,7 +108,7 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
-      firefox
+      librewolf
       tree
       openvpn
       networkmanager-openvpn
@@ -122,7 +126,6 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     dmenu
-    xscreensaver
     haskellPackages.xmobar
     trayer
     networkmanagerapplet
@@ -131,6 +134,10 @@
     alacritty
     pavucontrol
   ];
+
+  # More fonts
+  fonts.packages = []
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -144,6 +151,9 @@
 
   # Enable fwupd to update firmware
   services.fwupd.enable = true;
+
+  # Screensaving
+  services.xscreensaver.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

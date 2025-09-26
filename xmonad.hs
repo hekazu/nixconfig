@@ -31,7 +31,7 @@ myconfig = def
     ,  focusedBorderColor = "#32CD32"
     }
   `additionalKeysP`
-    [ ("M-f", spawn "firefox")
+    [ ("M-f", spawn "librewolf")
     , ("M4-l", spawn "xscreensaver-command -lock")
     , ("M-q", restart "xmonad" True )
     , ("M-e", spawn "thunderbird")
