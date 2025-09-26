@@ -17,12 +17,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 5;
 
-  # Use LUKS
-  boot.initrd.luks.devices = {
-    luksroot = {
-      device = "/dev/disk/by-uuid/b3df4f4c-e6e2-402b-a788-0a1eee5fbc2b";
-    };
-  };
+  # LUKS moved to hardware-configuration.nix
+  #boot.initrd.luks.devices = {
+  #  luksroot = {
+  #    device = "/dev/disk/by-uuid/b3df4f4c-e6e2-402b-a788-0a1eee5fbc2b";
+  #  };
+  #};
 
   # Ensure filesystems are using the correct options
   fileSystems = {
@@ -152,8 +152,8 @@
   # Enable fwupd to update firmware
   services.fwupd.enable = true;
 
-  # Screensaving
-  services.xscreensaver.enable = true;
+  # Enabling passwords to work with screensaving
+  security.pam.services.xscreensaver.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
