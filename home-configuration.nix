@@ -9,6 +9,7 @@
       arandr
       autorandr
       thunderbird
+      keepassxc
     ];
 
     home.sessionVariables = {
