@@ -147,6 +147,13 @@
     enableSSHSupport = true;
   };
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
   # List services that you want to enable:
 
   # Enable fwupd to update firmware
@@ -155,6 +162,13 @@
   # Enabling passwords to work with screensaving
   security.pam.services.xscreensaver.enable = true;
 
+  # Enable installing proprietary, unfree software in limited scope
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
