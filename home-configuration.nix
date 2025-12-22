@@ -57,20 +57,22 @@
 
     programs.git = {
       enable = true;
-      userName = "Henri Peurasaari";
-      userEmail = "henri.peurasaari@helsinki.fi";
+      settings = {
+        user = {
+          name = "Henri Peurasaari";
+          email = "henri.peurasaari@helsinki.fi";
+          signingkey = "6E5D47F6C411A1C8";
+        };
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+        branch.autoSetupRebase = "remote";
+      };
       ignores = [
         ".direnv/"
         "dist-newstyle/"
         ".envrc"
         "result"
       ];
-      extraConfig = {
-        init.defaultBranch = "main";
-        push.autoSetupRemote = true;
-        branch.autoSetupRebase = "remote";
-        user.signingkey = "6E5D47F6C411A1C8";
-      };
     };
 
     programs.vim = {
