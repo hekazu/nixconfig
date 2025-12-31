@@ -36,6 +36,8 @@ myconfig = def
     , ("M-q", restart "xmonad" True )
     , ("M-e", spawn "thunderbird")
     , ("<Print>", spawn "flameshot gui")
+    , ("<XF86MonBrightnessUp>", spawn "light -A 30")
+    , ("<XF86MonBrightnessDown>", spawn "light -U 30")
     ]
 
 myXmobarPP :: PP

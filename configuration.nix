@@ -81,6 +81,9 @@
     #jack.enable = true;
   };
 
+  # Enable backlight controls
+  programs.light.enable = true;
+
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -101,7 +104,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fargate = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ and backlight access for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
       librewolf
