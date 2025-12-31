@@ -85,18 +85,14 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-  };
-
-  # Use Bluetooth sound
-  environment.etc = {
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-        bluez_monitor.properties = {
-            ["bluez5.enable-sbc-xq"] = true,
-            ["bluez5.enable-msbc"] = true,
-            ["bluez5.enable-hw-volume"] = true,
-            ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-        }
-    '';
+    settings = {
+      General = {
+        # Shows battery charge et al.
+        Experimental = true;
+      };
+      # Enable all found controllers
+      Policy.AutoEnable = true;
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -164,6 +160,7 @@
 
   # Enable installing proprietary, unfree software in limited scope
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    # Steam, for gaming
     "steam"
     "steam-original"
     "steam-unwrapped"
