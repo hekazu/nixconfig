@@ -52,20 +52,12 @@
   console.keyMap = "fi";
 
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the Xmonad Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-    config = ./xmonad.hs;
-   };
-
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "fi";
-  # services.xserver.xkbOptions = "eurosign:e,caps:escape";
+  # Enable Niri compositor for Wayland
+  services.displayManager.gdm.enable = true;
+  programs.niri.enable = true;
+  xdg.portal.config.niri = {
+    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -124,12 +116,8 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    dmenu
-    haskellPackages.xmobar
-    trayer
     networkmanagerapplet
     feh
-    cbatticon
     alacritty
     pavucontrol
   ];
@@ -157,9 +145,6 @@
 
   # Enable fwupd to update firmware
   services.fwupd.enable = true;
-
-  # Enabling passwords to work with screensaving
-  security.pam.services.xscreensaver.enable = true;
 
   # Enable installing proprietary, unfree software in limited scope
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

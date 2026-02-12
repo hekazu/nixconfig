@@ -6,10 +6,10 @@
   home-manager.users.fargate = {
     home.packages = with pkgs; [
       tree
-      arandr
-      autorandr
       thunderbird
       keepassxc
+      swaybg # setting backgrounds
+      xwayland-satellite # support xwayland
     ];
 
     home.sessionVariables = {
@@ -35,7 +35,7 @@
       enable = true;
       settings = {
         font = {
-          size = 10.0;
+          size = 13.0;
           normal = {
             family = "Terminess Nerd Font";
             style = "Regular";
@@ -112,19 +112,23 @@
       '';
     };
 
-    services.flameshot = {
-      enable = true;
-      settings = {
-        General = { showStartupLaunchMessage = false; };
-      };
-    };
-
     services.nextcloud-client = {
       enable = true;
       startInBackground = true;
     };
 
-    services.xscreensaver.enable = true;
+    # Additional installations for Niri
+    programs.fuzzel.enable = true; # app launcher
+    programs.swaylock.enable = true; # screen locker
+    programs.waybar.enable = true; # bar (duh)
+    services.mako.enable = true; # notification daemon
+    services.swayidle.enable = true; # idle management daemon
+    services.polkit-gnome.enable = true;
+
+    # Set Niri conf file
+    xdg.configFile."niri/config.kdl".source = ./niriconf.kdl;
+    # Set waybar conf file
+    xdg.configFile."waybar/config.jsonc".source = ./barconf.jsonc;
 
     programs.home-manager.enable = true;
     home.stateVersion = "23.05";
